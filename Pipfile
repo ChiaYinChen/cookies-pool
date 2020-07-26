@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "==3.8.3"
+
+[packages]
+flask = "==1.1.2"
+selenium = "==3.141.0"
+redis = "==3.5.3"
+flask-restful = "==0.3.8"
+colorlog = "==4.1.0"
+requests = "==2.24.0"
+
+[requires]
+python_version = "3.7"
