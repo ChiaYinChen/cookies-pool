@@ -34,7 +34,7 @@ class CookiesGenerator(abc.ABC):
     def init_browser(self):
         """Start driver."""
         selenium_hub = os.environ.get('SELENIUM_HUB', 'selenium-hub')
-        remote = bool(strtobool(os.environ.get('REMOTE_ENABLE', 'TRUE')))
+        remote = bool(strtobool(os.environ.get('REMOTE_ENABLEED', 'TRUE')))
 
         firefox_options = webdriver.FirefoxProfile()
         # disable notification
