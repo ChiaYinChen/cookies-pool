@@ -11,7 +11,10 @@ class Random(Resource):
         """Get a random cookies."""
         cookies_db = RedisClient(type_='cookies', website=website)
         if cookies_db.count():
-            return cookies_db.random()
+            return {
+                'message': f'Get {website} cookies success',
+                'cookies': cookies_db.random()
+            }
         return {
             'message': f'尚未有可用的 {website} cookies!'
         }, 404

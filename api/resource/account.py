@@ -9,7 +9,7 @@ class Account(Resource):
     """Account."""
 
     def post(self, website):
-        """Create account/password."""
+        """Add account/password."""
         data = request.get_json()
         account = data.get('account')
         password = data.get('password')
@@ -23,6 +23,6 @@ class Account(Resource):
             return {'message': 'Account is exist!'}
         if accounts_db.set(account=account, value=password):
             return {
-                'message': 'Insert account success',
+                'message': 'Add account success',
                 'params': params
             }, 201
