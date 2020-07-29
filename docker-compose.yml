@@ -1,0 +1,50 @@
+version: '3.8'
+
+x-logging:
+  &default-logging
+  options:
+    max-size: '200m'
+    max-file: '3'
+  driver: json-file
+
+services:
+  api:
+    build: .
+    command: sh -c 'pipenv run flask run --host=0.0.0.0 --port=6250'
+    ports:
+      - 6250:6250
+    depends_on:
+      - redis
+    environment:
+      - FLASK_APP=api:create_app()
+      - GENERATOR_PROCESS_ENABLED=${GENERATOR_PROCESS_ENABLED}
+      - TESTER_PROCESS_ENABLED=${TESTER_PROCESS_ENABLED}
+      - REMOTE_ENABLEED=${REMOTE_ENABLEED}
+    restart: always
+
+  redis:
+    image: redis:alpine
+    restart: always
+
+  selenium-hub:
+    image: selenium/hub:3.141.59-radium
+    ports:
+      - 4444:4444
+    environment:
+      - GRID_MAX_SESSION=3
+    logging: *default-logging
+    restart: always
+
+  firefox:
+    image: selenium/node-firefox:3.141.59-radium
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_SESSION=3
+      - NODE_MAX_INSTANCES=3
+    logging: *default-logging
+    restart: always

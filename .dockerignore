@@ -1,0 +1,7 @@
+**/.git
+**/.gitignore
+.dockerignore
+.envrc
+**/__pycache__
+README.md
+*.log
