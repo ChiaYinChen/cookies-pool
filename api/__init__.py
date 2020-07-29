@@ -9,7 +9,7 @@ def create_app():
 
     app = Flask(__name__)
     api = Api(app)
-    api.add_resource(Account, '/account/<string:website>')
-    api.add_resource(Random, '/cookies/<string:website>/random')
+    api.add_resource(Account, '/account/<string:website>/')
+    api.add_resource(Random, '/cookies/<string:website>/random/')
 
     return app

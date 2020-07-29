@@ -96,3 +96,12 @@ class RedisClient:
         cookies = self.conn.hvals(self.key_for)
         result = [cookie.decode('utf-8') for cookie in cookies]
         return random.choice(result)
+
+    def count(self) -> int:
+        """Returns the number of fields (accounts) contained
+           in the hash stored at key.
+
+        Returns:
+            int: number of fields in the hash, or 0 when key does not exist
+        """
+        return self.conn.hlen(self.key_for)
