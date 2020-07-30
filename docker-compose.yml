@@ -17,8 +17,6 @@ services:
       - redis
     environment:
       - FLASK_APP=api:create_app()
-      - GENERATOR_PROCESS_ENABLED=${GENERATOR_PROCESS_ENABLED}
-      - TESTER_PROCESS_ENABLED=${TESTER_PROCESS_ENABLED}
     restart: always
 
   redis:
