@@ -69,7 +69,7 @@ GET /cookies/<website>/random/
 Example:
 
 ```
-curl -X GET "http://127.0.0.1:6250/cookies/ig/random/"
+$ curl -X GET "http://127.0.0.1:6250/cookies/ig/random/"
 ```
 
 Success:
@@ -87,4 +87,21 @@ Fail condition: 尚未有可用的 cookies
 {
     "message": "尚未有可用的 ig cookies!"
 }
+```
+
+### 行程 (Process) 啟動 / 關閉，透過 `環境變數` 修改
+
+```
+# 模擬登入取得 cookies 後，添加至資料庫
+export GENERATOR_PROCESS_ENABLED=TRUE
+
+# 檢測資料庫中的 cookies 是否過期，如過期則刪除
+export TESTER_PROCESS_ENABLED=TRUE
+```
+
+### 運行行程 (Process)
+
+```
+$ docker-compose exec api sh
+/cookies-pool # pipenv run python main.py
 ```
