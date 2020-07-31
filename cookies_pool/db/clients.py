@@ -1,5 +1,4 @@
 """Handle database."""
-import random
 import redis
 from typing import List
 
@@ -87,15 +86,14 @@ class RedisClient:
         """
         return self.conn.hdel(self.key_for, account)
 
-    def random(self) -> str:
-        """Returns the value (cookies) in the hash stored at key.
+    def get_all_cookies(self) -> List[str]:
+        """Returns all values (cookies) in the hash stored at key.
 
         Returns:
-            str: a random cookies from website
+            List[str]: list of cookies
         """
         cookies = self.conn.hvals(self.key_for)
-        result = [cookie.decode('utf-8') for cookie in cookies]
-        return random.choice(result)
+        return [cookie.decode('utf-8') for cookie in cookies]
 
     def count(self) -> int:
         """Returns the number of fields (accounts) contained

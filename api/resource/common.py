@@ -1,4 +1,6 @@
 """Common API."""
+import random
+
 from flask_restful import Resource
 
 from cookies_pool.db.clients import RedisClient
@@ -13,7 +15,7 @@ class Random(Resource):
         if cookies_db.count():
             return {
                 'message': f'Get {website} cookies success',
-                'cookies': cookies_db.random()
+                'cookies': random.choice(cookies_db.get_all_cookies())
             }
         return {
             'message': f'尚未有可用的 {website} cookies!'
