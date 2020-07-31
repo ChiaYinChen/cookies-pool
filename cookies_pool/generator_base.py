@@ -85,6 +85,9 @@ class CookiesGenerator(abc.ABC):
         if accounts:
             self.init_browser()
             for account in accounts:
+                if self.cookies_db.get(account):
+                    logger.info(f'Cookies 已存在 ({account})')
+                    continue
                 password = self.accounts_db.get(account)
                 result = self.new_cookies(account, password)
                 if result.get('status'):
