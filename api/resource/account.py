@@ -8,8 +8,12 @@ from cookies_pool.db.clients import RedisClient
 class Account(Resource):
     """Account."""
 
-    def post(self, website):
-        """Add account/password."""
+    def post(self, website: str):
+        """Add account/password.
+
+        Args:
+            website (str): website name, e.g. 'fb', 'ig'
+        """
         data = request.get_json()
         account = data.get('account')
         password = data.get('password')
