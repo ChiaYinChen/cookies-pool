@@ -60,6 +60,39 @@ Fail condition: 帳號已存在
 }
 ```
 
+### 更新一組帳號的密碼
+
+```
+PUT /account/<website>/
+```
+
+Example:
+
+```
+$ curl -X PUT -H "Content-Type: application/json" -d '{"account" : "test_account", "password" : "987654321"}' "http://127.0.0.1:6250/account/ig/"
+```
+
+Success:
+
+```
+{
+    "message": "Update account success",
+    "params": {
+        "website": "ig",
+        "account": "test_account",
+        "password": "987654321"
+    }
+}
+```
+
+Fail condition: 帳號不存在
+
+```
+{
+    "message": "Account not found!"
+}
+```
+
 ### 得到一組隨機的 cookies
 
 ```
