@@ -44,8 +44,8 @@ Success:
 ```
 {
     "message": "Add account success",
+    "website": "ig",
     "params": {
-        "website": "ig",
         "account": "test_account",
         "password": "123456789"
     }
@@ -77,8 +77,8 @@ Success:
 ```
 {
     "message": "Update account success",
+    "website": "ig",
     "params": {
-        "website": "ig",
         "account": "test_account",
         "password": "987654321"
     }
@@ -93,7 +93,7 @@ Fail condition: 帳號不存在
 }
 ```
 
-### 得到一組隨機的 cookies
+### 隨機獲取一組 cookies
 
 ```
 GET /cookies/<website>/random/
