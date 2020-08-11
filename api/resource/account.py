@@ -18,26 +18,38 @@ class Account(Resource):
             'password', type=str, required=True, help='required password'
         )
 
+    def account_input(self, data: reqparse.Namespace) -> dict:
+        """Request parameters.
+
+        Args:
+            data (reqparse.Namespace): reqparse object
+
+        Returns:
+            dict: request parameters
+        """
+        account = data.get('account')
+        password = data.get('password')
+        return {
+            'account': account,
+            'password': password,
+        }
+
     def post(self, website: str):
         """Add account/password.
 
         Args:
             website (str): website name, e.g. 'fb', 'ig'
         """
-        data = self.parser.parse_args()
-        account = data.get('account')
-        password = data.get('password')
-        params = {
-            'website': website,
-            'account': account,
-            'password': password,
-        }
+        params = self.account_input(data=self.parser.parse_args())
         accounts_db = RedisClient(type_='accounts', website=website)
-        if accounts_db.get(account):
+        if accounts_db.get(params.get('account')):
             return {'message': 'Account is exist!'}
-        if accounts_db.set(account=account, value=password):
+        if accounts_db.set(
+            account=params.get('account'), value=params.get('password')
+        ):
             return {
                 'message': 'Add account success',
+                'website': website,
                 'params': params
             }, 201
 
@@ -47,19 +59,15 @@ class Account(Resource):
         Args:
             website (str): website name, e.g. 'fb', 'ig'
         """
-        data = self.parser.parse_args()
-        account = data.get('account')
-        password = data.get('password')
-        params = {
-            'website': website,
-            'account': account,
-            'password': password,
-        }
+        params = self.account_input(data=self.parser.parse_args())
         accounts_db = RedisClient(type_='accounts', website=website)
-        if accounts_db.get(account):
-            accounts_db.set(account=account, value=password)
+        if accounts_db.get(params.get('account')):
+            accounts_db.set(
+                account=params.get('account'), value=params.get('password')
+            )
             return {
                 'message': 'Update account success',
+                'website': website,
                 'params': params
             }
         else:
