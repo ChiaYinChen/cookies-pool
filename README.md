@@ -1,5 +1,7 @@
 # Cookies Pool
 
+[![Build Status](https://travis-ci.com/ChiaYinChen/cookies-pool.svg?branch=master)](https://travis-ci.com/ChiaYinChen/cookies-pool)
+
 ## Configurable variables
 
 |  variable name                |  default value        | overridable |
