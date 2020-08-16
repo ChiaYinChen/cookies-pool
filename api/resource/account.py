@@ -8,7 +8,7 @@ class Account(Resource):
     """Account."""
 
     def __init__(self, *args, **kwargs):
-        """Init."""
+        """Initialize."""
         super().__init__(*args, **kwargs)
         self.parser = reqparse.RequestParser()
         self.parser.add_argument(
