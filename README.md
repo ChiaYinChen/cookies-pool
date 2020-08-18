@@ -37,13 +37,19 @@ POST /account/<website>/
 
 Example:
 
-```
-$ curl -X POST -H "Content-Type: application/json" -d '{"account" : "test_account", "password" : "123456789"}' "http://127.0.0.1:6250/account/ig/"
+```bash
+$ curl -X POST \
+  "http://localhost:6250/account/ig/" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "account" : "test_account",
+        "password" : "123456789"
+  }'
 ```
 
 Success:
 
-```
+```bash
 {
     "message": "Add account success",
     "website": "ig",
@@ -56,7 +62,7 @@ Success:
 
 Fail condition: 帳號已存在
 
-```
+```bash
 {
     "message": "Account is exist!"
 }
@@ -70,13 +76,19 @@ PUT /account/<website>/
 
 Example:
 
-```
-$ curl -X PUT -H "Content-Type: application/json" -d '{"account" : "test_account", "password" : "987654321"}' "http://127.0.0.1:6250/account/ig/"
+```bash
+$ curl -X PUT \
+  "http://localhost:6250/account/ig/" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "account" : "test_account",
+        "password" : "987654321"
+  }'
 ```
 
 Success:
 
-```
+```bash
 {
     "message": "Update account success",
     "website": "ig",
@@ -89,7 +101,7 @@ Success:
 
 Fail condition: 帳號不存在
 
-```
+```bash
 {
     "message": "Account not found!"
 }
@@ -103,13 +115,13 @@ GET /cookies/<website>/random/
 
 Example:
 
-```
-$ curl -X GET "http://127.0.0.1:6250/cookies/ig/random/"
+```bash
+$ curl -X GET "http://localhost:6250/cookies/ig/random/"
 ```
 
 Success:
 
-```
+```bash
 {
     "message": "Get ig cookies success",
     "cookies": "{\"ig_did\": \"BC7AF1D7-003D-4718-92F7-636B40C015CF\", \"rur\": \"FTW\", \"mid\": \"XyFBlQAEAAH6HmUhdqvYuwpS4s_s\", \"sessionid\": \"25659826982%3A2HItgj1QcoHA3G%3A16\", \"csrftoken\": \"fwVotsqlYS1HPhN5ZWZzAEFEadlCMH5E\", \"ds_user_id\": \"39662739281\", \"urlgen\": \"\\\"{\\\\\\\"72.320.332.83\\\\\\\": 3462}:1k0iPW:LAgs2u5cNYxmJxKEDJlHg1RrUA8\\\"\"}"
@@ -118,7 +130,7 @@ Success:
 
 Fail condition: 尚未有可用的 cookies
 
-```
+```bash
 {
     "message": "尚未有可用的 ig cookies!"
 }
@@ -126,7 +138,7 @@ Fail condition: 尚未有可用的 cookies
 
 ### 行程 (Process) 啟動 / 關閉，透過 `環境變數` 修改
 
-```
+```shell
 # 模擬登入取得 cookies 後，添加至資料庫
 export GENERATOR_PROCESS_ENABLED=TRUE
 
