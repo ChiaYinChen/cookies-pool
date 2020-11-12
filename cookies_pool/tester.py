@@ -70,7 +70,7 @@ class FBCookiesTester(CookiesTester):
         if (
             response.status_code == 200
         ) and (
-            'id="logoutMenu"' in response.text
+            'href="/me/"' in response.text
         ):
             logger.info(f'Cookies 有效 ({account})')
         else:
@@ -103,7 +103,7 @@ class IGCookiesTester(CookiesTester):
         if (
             response.status_code == 200
         ) and (
-            f'"username":"{account}"' in response.text
+            f'"username":"{account.lower()}"' in response.text
         ):
             logger.info(f'Cookies 有效 ({account})')
         else:

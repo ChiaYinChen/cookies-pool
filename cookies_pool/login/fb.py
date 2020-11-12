@@ -20,13 +20,13 @@ class FBCookies(LoginBase):
         self.driver.find_element_by_css_selector(
             '#pass').send_keys(self.password)
         self.driver.find_element_by_css_selector(
-            '#loginbutton').click()
+            'button[name="login"]').click()
         time.sleep(1)
 
     @property
     def logged_in(self):
         """Check if a user has logged in."""
-        if 'id="logoutMenu"' in self.driver.page_source:
+        if 'href="/me/"' in self.driver.page_source:
             stat = True
         else:
             stat = False
