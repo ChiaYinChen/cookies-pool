@@ -57,7 +57,9 @@ class FBCookiesTester(CookiesTester):
             account (str): user account
             cookies (str): account's cookies
         """
-        cookiejar = requests.utils.cookiejar_from_dict(json.loads(cookies))
+        cookiejar = requests.utils.cookiejar_from_dict(
+            {cookie['name']: cookie['value'] for cookie in json.loads(cookies)}
+        )
         response = requests.get(
             url='https://www.facebook.com/',
             cookies=cookiejar,
