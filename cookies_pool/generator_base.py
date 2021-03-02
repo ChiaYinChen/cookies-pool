@@ -4,7 +4,7 @@ import json
 import logging
 import os
 from distutils.util import strtobool
-from typing import List
+from typing import List, Union
 
 from selenium import webdriver
 
@@ -57,16 +57,19 @@ class CookiesGenerator(abc.ABC):
         """Implement this method for create cookies."""
         pass
 
-    def process_cookies(self, cookies: List[dict]) -> dict:
+    def process_cookies(self, cookies: List[dict]) -> Union[dict, list]:
         """Process cookies.
 
         Args:
             cookies (List[dict]): account's cookies
 
         Returns:
-            dict: list of cookies
+            Union[dict, list]: list of cookies
         """
-        return {cookie['name']: cookie['value'] for cookie in cookies}
+        if self.website == 'fb':
+            return cookies
+        else:
+            return {cookie['name']: cookie['value'] for cookie in cookies}
 
     def close(self):
         """Closes all browser windows and ends driver's session/process."""

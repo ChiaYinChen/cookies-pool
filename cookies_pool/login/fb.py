@@ -26,7 +26,7 @@ class FBCookies(LoginBase):
     @property
     def logged_in(self):
         """Check if a user has logged in."""
-        if 'href="/me/"' in self.driver.page_source:
+        if '動態消息' in self.driver.page_source:
             stat = True
         else:
             stat = False
