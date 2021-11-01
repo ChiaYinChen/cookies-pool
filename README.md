@@ -1,6 +1,6 @@
 # Cookies Pool
 
-[![Build Status](https://travis-ci.com/ChiaYinChen/cookies-pool.svg?branch=master)](https://travis-ci.com/ChiaYinChen/cookies-pool)
+[![Build Status](https://app.travis-ci.com/ChiaYinChen/cookies-pool.svg?branch=master)](https://app.travis-ci.com/ChiaYinChen/cookies-pool)
 
 Docker + Flask + Selenium 實現 Cookies Pool 服務，維護多個帳號的登入資訊，目前僅支援 Facebook 和 Instagram 網站。
 
